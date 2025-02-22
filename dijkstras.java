@@ -1,19 +1,14 @@
 import java.util.Scanner;
- public class DijkstraAlgorithm {
-static final int INF = 999;
-
-private static int chooseMinVertex(int[] dist, boolean[] S, int n) {
- 
-int minIndex = -1, min = INF;
-for (int i = 0; i < n; i++)
-if (!S[i] && dist[i] < min) {
-
-min = dist[i];
-minIndex = i;
-
-}
-
-return minIndex;
+public class DijkstraAlgorithm {
+      static final int INF = 999;
+      private static int chooseMinVertex(int[] dist, boolean[] S, int n) {
+                     int minIndex = -1, min = INF;
+                     for (int i = 0; i < n; i++)
+                             if (!S[i] && dist[i] < min) {
+                                   min = dist[i];
+                                   minIndex = i;
+                       }
+                   return minIndex;
 
 }
 public static void shortestPaths(int v, int[][] cost, int[] dist, int n) {
