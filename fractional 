@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+class Item {
+    int weight;
+    int profit;
+
+    Item(int weight, int profit) {
+        this.weight = weight;
+        this.profit = profit;
+    }
+}
+
+public class GreedKnapSack {
+    public static double fractionalKnapsack(Item[] items, int capacity) {
+        Arrays.sort(items, (a, b) -> Double.compare((double) b.profit / b.weight, (double) a.profit / a.weight));
+
+        double totalValue = 0.0;
+        int currentWeight = 0;
+
+        for (int i = 0; i < items.length; i++) {
+            if (currentWeight + items[i].weight <= capacity) {
+                currentWeight += items[i].weight;
+                totalValue += items[i].profit;
+                System.out.println("Total Value so far: " + totalValue);
+            } else {
+                int remainingWeight = capacity - currentWeight;
+                totalValue += (items[i].profit / (double) items[i].weight) * remainingWeight;
+                System.out.println("Total Value so far: " + totalValue);
+                break;
+            }
+        }
+
+        return totalValue;
+    }
+
+    public static void main(String[] args) {
+        Item[] items = {
+            new Item(10, 60),
+            new Item(20, 100),
+            new Item(30, 120)
+        };
+        int capacity = 50;
+
+        double maxValue = fractionalKnapsack(items, capacity);
+        System.out.println("Maximum value in Knapsack = " + maxValue);
+    }
+}
